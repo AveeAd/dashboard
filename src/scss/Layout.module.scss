@@ -1,0 +1,14 @@
+.container {
+  width: 80%;
+  height: 80%;
+  padding: 1rem;
+  background-color: #eee;
+  border-radius: 50px;
+  display: flex;
+  z-index: 10;
+  .sidebar {
+    background-color: #fff;
+    border-radius: 50px;
+    padding: 1rem;
+  }
+}
