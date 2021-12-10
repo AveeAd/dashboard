@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,700;0,800;1,600&display=swap");
 
+@import "~bootstrap/scss/bootstrap";
+
 $blue: #d0bfff;
 $pink: #fcc2d7;
 $skyblue: #00ccff;
@@ -19,6 +21,7 @@ html {
 body {
   background-color: #ddd;
   position: relative;
+  overflow: hidden;
   &::after {
     content: "";
     position: absolute;
@@ -56,4 +59,9 @@ body {
 
 .del {
   color: $red;
+}
+
+.active {
+  background-color: $blue;
+  color: #fff !important;
 }

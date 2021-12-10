@@ -2,27 +2,43 @@ import { AiFillHome, AiFillContainer, AiFillTag } from "react-icons/ai";
 import { MdAccountCircle, MdAnalytics } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import styled from "@emotion/styled";
+import classes from "../scss/Menu.module.scss";
 
 const Menu = () => {
   return (
     <MenuStyled>
-      <NavLink to="/">
+      <NavLink
+        to="/"
+        className={({ isActive }) => (isActive ? classes.activeNav : null)}
+      >
         <AiFillHome />
         <span>Home</span>
       </NavLink>
-      <NavLink to="/orders">
+      <NavLink
+        to="/orders"
+        className={({ isActive }) => (isActive ? classes.activeNav : null)}
+      >
         <AiFillContainer />
         <span>Orders</span>
       </NavLink>
-      <NavLink to="/customers">
+      <NavLink
+        to="/customers"
+        className={({ isActive }) => (isActive ? classes.activeNav : null)}
+      >
         <MdAccountCircle />
         <span>Customers</span>
       </NavLink>
-      <NavLink to="/products">
+      <NavLink
+        to="/products"
+        className={({ isActive }) => (isActive ? classes.activeNav : null)}
+      >
         <AiFillTag />
         <span>Products</span>
       </NavLink>
-      <NavLink to="/analytics">
+      <NavLink
+        to="/analytics"
+        className={({ isActive }) => (isActive ? classes.activeNav : null)}
+      >
         <MdAnalytics />
         <span>Analytics</span>
       </NavLink>

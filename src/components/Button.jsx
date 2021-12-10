@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
-const Button = ({ children }) => {
-  return <Btn>{children}</Btn>;
+const Button = ({ children, onClick }) => {
+  return <Btn onClick={onClick}>{children}</Btn>;
 };
 
 export default Button;
@@ -16,6 +16,7 @@ const Btn = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
   & span {
     margin: 0 0.5rem;
   }
