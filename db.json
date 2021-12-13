@@ -8,20 +8,6 @@
       "total": "4"
     },
     {
-      "name": "Tea",
-      "price": "20",
-      "quantity": "10",
-      "total": "200",
-      "id": "2"
-    },
-    {
-      "name": "Coffee",
-      "price": "1",
-      "quantity": "2",
-      "total": "2",
-      "id": "3"
-    },
-    {
       "total": 2,
       "quantity": 2,
       "price": 1,

@@ -4,31 +4,36 @@ import { connect } from "react-redux";
 import { fetchOrders } from "../_redux/actions/orderActions";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Loading from "./Loading";
 
 const OrdersTable = ({ fetchOrders, orders }) => {
   const { page } = useParams();
   useEffect(() => {
     fetchOrders(5, page);
   }, [page]);
-  return (
-    <Table>
-      <thead>
-        <tr>
-          <th>Order ID</th>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th>Total</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        {orders.map((order) => (
-          <Order order={order} key={order.id} />
-        ))}
-      </tbody>
-    </Table>
-  );
+  if (orders.length === 0) {
+    return <Loading />;
+  } else {
+    return (
+      <Table>
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {orders.map((order) => (
+            <Order order={order} key={order.id} />
+          ))}
+        </tbody>
+      </Table>
+    );
+  }
 };
 
 const mapStateToProps = (state) => ({

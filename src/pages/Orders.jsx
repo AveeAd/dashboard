@@ -12,6 +12,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import PaginationComp from "../components/PaginationComp";
 import OrdersTable from "./OrdersTable";
 import { useNavigate, useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Orders = ({ total, addOrder }) => {
   const { page } = useParams();
@@ -19,6 +21,16 @@ const Orders = ({ total, addOrder }) => {
   const [pageNo, setPageNo] = useState(page);
 
   const navigate = useNavigate();
+  const notify = () =>
+    toast.info("Order Added Successfully", {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   const setPageHandler = (page) => {
     setPageNo(page);
@@ -50,6 +62,7 @@ const Orders = ({ total, addOrder }) => {
     let url = "/orders";
     addOrder(data, url);
     handleClose();
+    notify();
   };
 
   return (
@@ -75,6 +88,17 @@ const Orders = ({ total, addOrder }) => {
         <OrdersTable />
         <PaginationComp total={total} page={pageNo} setPage={setPageHandler} />
       </Container>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </Layout>
   );
 };
