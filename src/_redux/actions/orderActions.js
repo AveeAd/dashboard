@@ -7,8 +7,8 @@ import {
 } from "../actionTypes";
 
 export const fetchOrders = (limit, page) => async (dispatch) => {
-  let { data } = await axios.get(`/api/orders?_limit=${limit}&_page=${page}`);
-  let total = await axios.get("/api/orders");
+  let { data } = await axios.get(`/orders?_limit=${limit}&_page=${page}`);
+  let total = await axios.get("/orders");
 
   dispatch({
     type: FETCH_ORDERS,
