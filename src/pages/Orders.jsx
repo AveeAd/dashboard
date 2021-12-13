@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Button from "../components/Button";
 import { Container, Divider, Header } from "../components/StyledComponents";
 import Layout from "../layout/Layout";
@@ -6,21 +7,17 @@ import styled from "@emotion/styled";
 import Order from "../components/Order";
 import { connect } from "react-redux";
 import { fetchOrders, addOrder } from "../_redux/actions/orderActions";
-import { showModal, hideModal } from "../_redux/actions/modalActions";
 import { useEffect } from "react";
 import ModalComponent from "../components/ModalComponent";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import PaginationComp from "../components/PaginationComp";
 
-const Orders = ({
-  fetchOrders,
-  orders,
-  showModal,
-  show,
-  hideModal,
-  addOrder,
-}) => {
+const Orders = ({ fetchOrders, orders, addOrder }) => {
+  const [show, setShow] = useState(false);
+  const [page, setPage] = useState(1);
+
   const schema = yup.object({
     id: yup.string().required(),
     name: yup.string().required(),
@@ -34,18 +31,20 @@ const Orders = ({
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
   useEffect(() => {
-    let url = "http://localhost:5000/orders";
-    fetchOrders(url);
-  }, []);
+    fetchOrders(5, page);
+  }, [page]);
   const addModal = {
     title: "Add Order",
     button: "Add",
   };
 
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
+
   const submitAction = (data) => {
     let url = "http://localhost:5000/orders";
     addOrder(data, url);
-    hideModal();
+    handleClose();
   };
 
   return (
@@ -53,14 +52,14 @@ const Orders = ({
       <Container>
         <Header>
           <h3>Orders</h3>
-          <Button onClick={showModal}>
+          <Button onClick={handleShow}>
             <RiAddFill />
             <span>Add Order</span>
           </Button>
         </Header>
         <ModalComponent
           show={show}
-          hideModal={hideModal}
+          hideModal={handleClose}
           data={addModal}
           submitAction={submitAction}
           register={register}
@@ -85,6 +84,7 @@ const Orders = ({
             ))}
           </tbody>
         </Table>
+        <PaginationComp total={orders.total} page={page} setPage={setPage} />
       </Container>
     </Layout>
   );
@@ -92,13 +92,10 @@ const Orders = ({
 
 const mapStateToProps = (state) => ({
   orders: state.orders,
-  show: state.modal.show,
 });
 
 export default connect(mapStateToProps, {
   fetchOrders,
-  showModal,
-  hideModal,
   addOrder,
 })(Orders);
 

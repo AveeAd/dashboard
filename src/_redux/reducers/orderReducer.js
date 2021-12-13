@@ -7,6 +7,7 @@ import {
 
 const initialState = {
   orders: [],
+  total: 0,
 };
 
 export const orderReducer = (state = initialState, action) => {
@@ -14,9 +15,11 @@ export const orderReducer = (state = initialState, action) => {
     case FETCH_ORDERS:
       return {
         ...state,
-        orders: action.payload,
+        orders: action.payload.orders,
+        total: action.payload.total,
       };
     case ADD_ORDER:
+      console.log(state.orders, action.payload);
       return {
         ...state,
         orders: [action.payload, ...state.orders],

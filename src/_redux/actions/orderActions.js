@@ -6,13 +6,16 @@ import {
   UPDATE_ORDER,
 } from "../actionTypes";
 
-export const fetchOrders = (url) => (dispatch) => {
-  axios.get(url).then((res) =>
-    dispatch({
-      type: FETCH_ORDERS,
-      payload: res.data,
-    })
+export const fetchOrders = (limit, page) => async (dispatch) => {
+  let { data } = await axios.get(
+    `http://localhost:5000/orders?_limit=${limit}&_page=${page}`
   );
+  let total = await axios.get("http://localhost:5000/orders");
+
+  dispatch({
+    type: FETCH_ORDERS,
+    payload: { orders: data, total: total.data.length },
+  });
 };
 
 export const addOrder = (order, url) => (dispatch) => {

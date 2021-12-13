@@ -22,13 +22,6 @@
       "id": "3"
     },
     {
-      "id": "4",
-      "name": "Coffee",
-      "price": "2.00",
-      "quantity": "1",
-      "total": "2.00"
-    },
-    {
       "total": 2,
       "quantity": 2,
       "price": 1,
@@ -41,6 +34,48 @@
       "price": 50,
       "name": "Coffee",
       "id": "6"
+    },
+    {
+      "id": "7",
+      "name": "Tea",
+      "price": "2",
+      "quantity": "2",
+      "total": "4"
+    },
+    {
+      "id": "8",
+      "name": "Tea",
+      "price": "20",
+      "quantity": "10",
+      "total": "200"
+    },
+    {
+      "id": "9",
+      "name": "Coffee",
+      "price": "1",
+      "quantity": "2",
+      "total": "2"
+    },
+    {
+      "id": "10",
+      "name": "Tea",
+      "price": "2",
+      "quantity": "2",
+      "total": "4"
+    },
+    {
+      "id": "11",
+      "name": "Tea",
+      "price": "20",
+      "quantity": "10",
+      "total": "200"
+    },
+    {
+      "id": "12",
+      "name": "Coffee",
+      "price": "1",
+      "quantity": "2",
+      "total": "2"
     }
   ]
 }

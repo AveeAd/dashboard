@@ -1,0 +1,28 @@
+@import "~bootstrap/scss/bootstrap";
+
+.pagination {
+  .page-item {
+    &:not(:last-child) {
+      margin-right: 5px;
+      border-radius: 4px;
+    }
+  }
+  .page-link {
+    border: 1px solid #f6f6f6;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    color: $secondary;
+  }
+  @media (max-width: 768px) {
+    .page-link {
+      padding: 0.2rem 0.6rem;
+    }
+  }
+  .active {
+    .page-link {
+      background-color: $white !important;
+      border-color: $primary;
+      color: #000;
+    }
+  }
+}

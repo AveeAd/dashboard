@@ -28,14 +28,19 @@ const ModalComponent = ({
               disabled={disabled}
               value={id}
             />
+            {errors.id && <Error>{errors.id.message}</Error>}
             <input type="text" {...register("name")} placeholder="Name" />
+            {errors.name && <Error>{errors.name.message}</Error>}
             <input type="number" {...register("price")} placeholder="Price" />
+            {errors.price && <Error>{errors.price.message}</Error>}
             <input
               type="number"
               {...register("quantity")}
               placeholder="Quantity"
             />
+            {errors.quantity && <Error>{errors.quantity.message}</Error>}
             <input type="number" {...register("total")} placeholder="Total" />
+            {errors.total && <Error>{errors.total.message}</Error>}
             <Button varient="primary" onClick={handleSubmit(submitAction)}>
               {data.button}
             </Button>
@@ -61,4 +66,9 @@ const Form = styled.form`
       outline: 2px solid #d0bfff;
     }
   }
+`;
+
+const Error = styled.p`
+  color: red;
+  margin: 0.5rem 0;
 `;
