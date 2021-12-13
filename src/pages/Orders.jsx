@@ -47,7 +47,7 @@ const Orders = ({ total, addOrder }) => {
   const handleClose = () => setShow(false);
 
   const submitAction = (data) => {
-    let url = "http://localhost:5000/orders";
+    let url = "/api/orders";
     addOrder(data, url);
     handleClose();
   };

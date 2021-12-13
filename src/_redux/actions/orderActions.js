@@ -7,10 +7,8 @@ import {
 } from "../actionTypes";
 
 export const fetchOrders = (limit, page) => async (dispatch) => {
-  let { data } = await axios.get(
-    `http://localhost:5000/orders?_limit=${limit}&_page=${page}`
-  );
-  let total = await axios.get("http://localhost:5000/orders");
+  let { data } = await axios.get(`/api/orders?_limit=${limit}&_page=${page}`);
+  let total = await axios.get("/api/orders");
 
   dispatch({
     type: FETCH_ORDERS,
