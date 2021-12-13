@@ -15,7 +15,7 @@ const Menu = () => {
         <span>Home</span>
       </NavLink>
       <NavLink
-        to="/orders"
+        to="/orders/1"
         className={({ isActive }) => (isActive ? classes.activeNav : null)}
       >
         <AiFillContainer />

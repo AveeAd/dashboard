@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { Pagination } from "react-bootstrap";
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 
 const PaginationComp = ({ total, page, setPage }) => {
   const totalCount = useMemo(
@@ -10,7 +11,7 @@ const PaginationComp = ({ total, page, setPage }) => {
   return (
     <PaginationWrapper>
       <p>
-        Showing {page === Math.ceil(total / 10) ? total % 10 : 10} of {total}{" "}
+        Showing {page === Math.ceil(total / 5) ? total % 5 : 5} of {total}{" "}
         entries
       </p>
       <Pagination>
@@ -45,7 +46,6 @@ const PaginationComp = ({ total, page, setPage }) => {
             <Pagination.Item onClick={() => setPage(page - 1)}>
               {page - 1}
             </Pagination.Item>
-
             <Pagination.Item active>{page}</Pagination.Item>
 
             <Pagination.Item onClick={() => setPage(page + 1)}>

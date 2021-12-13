@@ -45,7 +45,6 @@ const PaginationComp = ({ total, page, setPage }) => {
             <Pagination.Item onClick={() => setPage(page - 1)}>
               {page - 1}
             </Pagination.Item>
-
             <Pagination.Item active>{page}</Pagination.Item>
 
             <Pagination.Item onClick={() => setPage(page + 1)}>

@@ -3,20 +3,27 @@ import Button from "../components/Button";
 import { Container, Divider, Header } from "../components/StyledComponents";
 import Layout from "../layout/Layout";
 import { RiAddFill } from "react-icons/ri";
-import styled from "@emotion/styled";
-import Order from "../components/Order";
 import { connect } from "react-redux";
-import { fetchOrders, addOrder } from "../_redux/actions/orderActions";
-import { useEffect } from "react";
+import { addOrder } from "../_redux/actions/orderActions";
 import ModalComponent from "../components/ModalComponent";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import PaginationComp from "../components/PaginationComp";
+import OrdersTable from "./OrdersTable";
+import { useNavigate, useParams } from "react-router-dom";
 
-const Orders = ({ fetchOrders, orders, addOrder }) => {
+const Orders = ({ total, addOrder }) => {
+  const { page } = useParams();
   const [show, setShow] = useState(false);
-  const [page, setPage] = useState(1);
+  const [pageNo, setPageNo] = useState(page);
+
+  const navigate = useNavigate();
+
+  const setPageHandler = (page) => {
+    setPageNo(page);
+    navigate(`/orders/${page}`);
+  };
 
   const schema = yup.object({
     id: yup.string().required(),
@@ -30,9 +37,7 @@ const Orders = ({ fetchOrders, orders, addOrder }) => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-  useEffect(() => {
-    fetchOrders(5, page);
-  }, [page]);
+
   const addModal = {
     title: "Add Order",
     button: "Add",
@@ -67,52 +72,17 @@ const Orders = ({ fetchOrders, orders, addOrder }) => {
           errors={errors}
         />
         <Divider height="70px" />
-        <Table>
-          <thead>
-            <tr>
-              <th>Order ID</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Total</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.orders.map((order) => (
-              <Order order={order} key={order.id} />
-            ))}
-          </tbody>
-        </Table>
-        <PaginationComp total={orders.total} page={page} setPage={setPage} />
+        <OrdersTable />
+        <PaginationComp total={total} page={pageNo} setPage={setPageHandler} />
       </Container>
     </Layout>
   );
 };
 
 const mapStateToProps = (state) => ({
-  orders: state.orders,
+  total: state.orders.total,
 });
 
 export default connect(mapStateToProps, {
-  fetchOrders,
   addOrder,
 })(Orders);
-
-const Table = styled.table`
-  width: 100%;
-  text-align: center;
-  & thead {
-    & tr {
-      background-color: #d0bfff;
-      color: #fff;
-    }
-  }
-  & tr {
-    background: #fff;
-  }
-  & th,
-  td {
-    padding: 1rem;
-  }
-`;
