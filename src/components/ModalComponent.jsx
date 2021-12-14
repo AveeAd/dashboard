@@ -1,18 +1,30 @@
 import Modal from "react-bootstrap/Modal";
 import { Button } from "react-bootstrap";
 import styled from "@emotion/styled";
+import CreatableSelect from "react-select/creatable";
+import { useForm, Controller } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
-const ModalComponent = ({
-  show,
-  hideModal,
-  data,
-  submitAction,
-  handleSubmit,
-  register,
-  errors,
-  id,
-  disabled,
-}) => {
+const options = [
+  { value: "Tea", label: "Tea" },
+  { value: "Coffee", label: "Coffee" },
+];
+
+const ModalComponent = ({ show, hideModal, data, submitAction, id }) => {
+  const schema = yup.object({
+    id: yup.string().required(),
+    name: yup.string().required(),
+    price: yup.number().required(),
+    quantity: yup.number().required(),
+    total: yup.number().required(),
+  });
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
   return (
     <>
       <Modal show={show} onHide={hideModal} centered>
@@ -25,11 +37,22 @@ const ModalComponent = ({
               type="text"
               {...register("id")}
               placeholder="Order Id"
-              disabled={disabled}
               value={id}
             />
             {errors.id && <Error>{errors.id.message}</Error>}
-            <input type="text" {...register("name")} placeholder="Name" />
+            <Controller
+              name="name"
+              control={control}
+              render={({ field: { onChange, onBlur } }) => (
+                <CreatableSelect
+                  options={options}
+                  onChange={(option) => onChange(option.value)}
+                  onBlur={onBlur}
+                  placeholder="Select an item"
+                />
+              )}
+            />
+
             {errors.name && <Error>{errors.name.message}</Error>}
             <input type="number" {...register("price")} placeholder="Price" />
             {errors.price && <Error>{errors.price.message}</Error>}

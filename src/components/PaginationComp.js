@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import { Pagination } from "react-bootstrap";
 import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
 
 const PaginationComp = ({ total, page, setPage }) => {
   const totalCount = useMemo(

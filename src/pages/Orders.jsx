@@ -6,9 +6,7 @@ import { RiAddFill } from "react-icons/ri";
 import { connect } from "react-redux";
 import { addOrder } from "../_redux/actions/orderActions";
 import ModalComponent from "../components/ModalComponent";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
+
 import PaginationComp from "../components/PaginationComp";
 import OrdersTable from "./OrdersTable";
 import { useNavigate, useParams } from "react-router-dom";
@@ -36,19 +34,6 @@ const Orders = ({ total, addOrder }) => {
     setPageNo(page);
     navigate(`/orders/${page}`);
   };
-
-  const schema = yup.object({
-    id: yup.string().required(),
-    name: yup.string().required(),
-    price: yup.number().required(),
-    quantity: yup.number().required(),
-    total: yup.number().required(),
-  });
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
 
   const addModal = {
     title: "Add Order",
@@ -80,9 +65,6 @@ const Orders = ({ total, addOrder }) => {
           hideModal={handleClose}
           data={addModal}
           submitAction={submitAction}
-          register={register}
-          handleSubmit={handleSubmit}
-          errors={errors}
         />
         <Divider height="70px" />
         <OrdersTable />

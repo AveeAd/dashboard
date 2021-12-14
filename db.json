@@ -1,17 +1,10 @@
 {
   "orders": [
     {
-      "id": "1",
-      "name": "Tea",
-      "price": "2",
-      "quantity": "2",
-      "total": "4"
-    },
-    {
-      "total": 2,
-      "quantity": 2,
+      "total": 1,
+      "quantity": 1,
       "price": 1,
-      "name": "Tea",
+      "name": "Milk",
       "id": "5"
     },
     {
@@ -62,6 +55,27 @@
       "price": "1",
       "quantity": "2",
       "total": "2"
+    },
+    {
+      "total": 1,
+      "quantity": 1,
+      "price": 1,
+      "name": "Tea",
+      "id": "2"
+    },
+    {
+      "total": 1,
+      "quantity": 1,
+      "price": 1,
+      "name": "Tea",
+      "id": "1"
+    },
+    {
+      "total": 1,
+      "quantity": 1,
+      "price": 1,
+      "name": "Coffee",
+      "id": "3"
     }
   ]
 }

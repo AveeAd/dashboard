@@ -11,11 +11,6 @@ const editModal = {
 };
 
 const Order = ({ order, deleteOrder, updateOrder }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
   const [show, setShow] = useState(false);
   const notifyDelete = () => toast.error("Order Deleted");
   const notifyUpdate = () => toast.success("Order Updated");
@@ -47,10 +42,6 @@ const Order = ({ order, deleteOrder, updateOrder }) => {
           hideModal={handleClose}
           data={editModal}
           submitAction={submitHandler}
-          register={register}
-          handleSubmit={handleSubmit}
-          errors={errors}
-          disabled={true}
           id={order.id}
         />
         <RiDeleteBinFill className="del" onClick={onDelete} />
