@@ -1,4 +1,3 @@
-import Layout from "../layout/Layout";
 import styled from "@emotion/styled";
 import { loginAction } from "../_redux/actions/authAction";
 import { connect } from "react-redux";

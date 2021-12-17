@@ -1,23 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import { Container, Divider, Header } from "../components/StyledComponents";
 import Layout from "../layout/Layout";
 import { RiAddFill } from "react-icons/ri";
 import { connect } from "react-redux";
-import { addOrder } from "../_redux/actions/orderActions";
+import { addOrder, fetchOrders } from "../_redux/actions/orderActions";
 import ModalComponent from "../components/ModalComponent";
-
-import PaginationComp from "../components/PaginationComp";
-import OrdersTable from "./OrdersTable";
 import { useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import TableComponent from "../components/TableComponent";
 
-const Orders = ({ total, addOrder }) => {
+const Orders = ({ orders, total, addOrder, fetchOrders }) => {
   const { page } = useParams();
   const [show, setShow] = useState(false);
   const [pageNo, setPageNo] = useState(page);
-
   const navigate = useNavigate();
   const notify = () =>
     toast.info("Order Added Successfully", {
@@ -29,6 +26,10 @@ const Orders = ({ total, addOrder }) => {
       draggable: true,
       progress: undefined,
     });
+
+  useEffect(() => {
+    fetchOrders(5, pageNo);
+  }, [pageNo]);
 
   const setPageHandler = (page) => {
     setPageNo(page);
@@ -67,8 +68,14 @@ const Orders = ({ total, addOrder }) => {
           submitAction={submitAction}
         />
         <Divider height="70px" />
-        <OrdersTable />
-        <PaginationComp total={total} page={pageNo} setPage={setPageHandler} />
+
+        <TableComponent
+          tableData={orders}
+          total={total}
+          page={pageNo}
+          setPage={setPageHandler}
+          actions={{ edit: true, delete: true }}
+        />
       </Container>
       <ToastContainer
         position="bottom-center"
@@ -86,9 +93,11 @@ const Orders = ({ total, addOrder }) => {
 };
 
 const mapStateToProps = (state) => ({
+  orders: state.orders.orders,
   total: state.orders.total,
 });
 
 export default connect(mapStateToProps, {
   addOrder,
+  fetchOrders,
 })(Orders);

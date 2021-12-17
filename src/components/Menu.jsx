@@ -22,25 +22,25 @@ const Menu = () => {
         <span>Orders</span>
       </NavLink>
       <NavLink
-        to="/customers"
+        to="/customers/1"
         className={({ isActive }) => (isActive ? classes.activeNav : null)}
       >
         <MdAccountCircle />
         <span>Customers</span>
       </NavLink>
       <NavLink
-        to="/products"
+        to="/products/1"
         className={({ isActive }) => (isActive ? classes.activeNav : null)}
       >
         <AiFillTag />
         <span>Products</span>
       </NavLink>
       <NavLink
-        to="/analytics"
+        to="/feedback/1"
         className={({ isActive }) => (isActive ? classes.activeNav : null)}
       >
         <MdAnalytics />
-        <span>Analytics</span>
+        <span>Feedbacks</span>
       </NavLink>
     </MenuStyled>
   );

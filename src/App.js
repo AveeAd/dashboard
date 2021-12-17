@@ -4,6 +4,9 @@ import { Routes, Route } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import Orders from "./pages/Orders";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Customers from "./pages/Customers";
+import Products from "./pages/Products";
+import Feedback from "./pages/Feedback";
 
 function App() {
   return (
@@ -23,6 +26,30 @@ function App() {
         element={
           <ProtectedRoute>
             <Orders />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/customers/:page"
+        element={
+          <ProtectedRoute>
+            <Customers />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/products/:page"
+        element={
+          <ProtectedRoute>
+            <Products />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/feedback/:page"
+        element={
+          <ProtectedRoute>
+            <Feedback />
           </ProtectedRoute>
         }
       />

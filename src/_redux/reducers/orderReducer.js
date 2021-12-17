@@ -5,12 +5,7 @@ import {
   UPDATE_ORDER,
 } from "../actionTypes";
 
-const initialState = {
-  orders: [],
-  total: 0,
-};
-
-export const orderReducer = (state = initialState, action) => {
+export const orderReducer = (state = { orders: [{}], total: 0 }, action) => {
   switch (action.type) {
     case FETCH_ORDERS:
       return {
@@ -39,7 +34,6 @@ export const orderReducer = (state = initialState, action) => {
     default:
       return {
         ...state,
-        orders: [],
       };
   }
 };

@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { deleteOrder, updateOrder } from "../_redux/actions/orderActions";
 import { useState } from "react";
 import ModalComponent from "./ModalComponent";
-import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 const editModal = {
   title: "Edit Order",

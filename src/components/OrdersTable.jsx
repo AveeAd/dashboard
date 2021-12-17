@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
-import Order from "../components/Order";
+import Order from "./Order";
 import { connect } from "react-redux";
 import { fetchOrders } from "../_redux/actions/orderActions";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Loading from "./Loading";
+import Loading from "../pages/Loading";
 
 const OrdersTable = ({ fetchOrders, orders }) => {
   const { page } = useParams();

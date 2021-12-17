@@ -6,3 +6,6 @@ export const SHOW_MODAL = "SHOW_MODAL";
 export const HIDE_MODAL = "HIDE_MODAL";
 export const AUTHENTICATE = "AUTHENTICATE";
 export const LOGOUT = "LOGOUT";
+export const FETCH_CUSTOMERS = "FETCH_CUSTOMERS";
+export const FETCH_PRODUCTS = "FETCH_PRODUCTS";
+export const FETCH_FEEDBACKS = "FETCH_FEEDBACKS";

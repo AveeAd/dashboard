@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { Pagination } from "react-bootstrap";
 import styled from "@emotion/styled";
+import "../scss/Pagination.scss";
 
 const PaginationComp = ({ total, page, setPage }) => {
   const totalCount = useMemo(
