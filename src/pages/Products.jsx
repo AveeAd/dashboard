@@ -7,10 +7,14 @@ import { fetchProducts } from "../_redux/actions/productAction";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { RiAddFill } from "react-icons/ri";
+import ModalComp from "../components/ModalComp";
+import { productElements } from "../_helpers/modalElements";
+
 const Products = ({ products, total, fetchProducts }) => {
   const { page } = useParams();
   const navigate = useNavigate();
   const [pageNo, setPageNo] = useState(page);
+  const [show, setShow] = useState(false);
 
   const setPageHandler = (page) => {
     setPageNo(page);
@@ -21,15 +25,36 @@ const Products = ({ products, total, fetchProducts }) => {
     fetchProducts(5, pageNo);
   }, [pageNo]);
 
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
+
+  const submitHandler = (data, e) => {
+    e.preventDefault();
+    console.log(data);
+  };
+
+  const modalType = {
+    title: "Add Product",
+    varient: "primary",
+    submit: "Add",
+  };
+
   return (
     <Layout>
       <Container>
         <Header>
           <h3>Products</h3>
-          <Button>
+          <Button onClick={handleShow}>
             <RiAddFill />
             <span>Add Order</span>
           </Button>
+          <ModalComp
+            elements={productElements}
+            modalType={modalType}
+            show={show}
+            handleClose={handleClose}
+            submitHandler={submitHandler}
+          />
         </Header>
         <Divider height="70px" />
         <TableComponent

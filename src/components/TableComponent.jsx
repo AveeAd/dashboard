@@ -3,7 +3,6 @@ import PaginationComp from "./PaginationComp";
 import { RiDeleteBinFill, RiEditBoxFill } from "react-icons/ri";
 
 const TableComponent = ({ tableData, total, page, setPage, actions }) => {
-  console.log(tableData);
   return (
     <>
       <Table>
